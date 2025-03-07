@@ -89,7 +89,7 @@ class Car:
         else:
             self.x -= 1
 
-    def possible_go_forward(self, field_x: int, field_y: int) -> bool:
+    def _possible_go_forward(self, field_x: int, field_y: int) -> bool:
         """Check whether the car is possible to go forward or not.
         If the step is go forward and car tries to move beyond the boundary of the field, impossible to go forward.
         Returns:
@@ -120,5 +120,5 @@ class Car:
         elif step == consts.COMMAND_RIGHT:
             self.turn_right()
         else:
-            if self.possible_go_forward(field_x, field_y):
+            if self._possible_go_forward(field_x, field_y):
                 self.go_forward()

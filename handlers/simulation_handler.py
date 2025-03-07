@@ -22,8 +22,8 @@ class SimulationHandler:
         """Main function to handle the simulation."""
         self.create_field()
         while True:
-            self.display_list_cars()
-            selection = self.input_selection(msg.MSG_MENU_ADD_CAR)
+            self._display_list_cars()
+            selection = self._input_selection(msg.MSG_MENU_ADD_CAR)
             if selection == "1":
                 self.create_car()
             else:
@@ -36,7 +36,7 @@ class SimulationHandler:
         if len(self.field.cars) > 0:
             self.io_handler.output_handler(f"{msg.MSG_LIST_CARS}\n{str(self.field)}")
             self.field.run_simulation()
-            self.display_simulation_result()
+            self._display_simulation_result()
 
     def create_field(self) -> None:
         """Create an instance of field with given width and height."""
@@ -55,16 +55,16 @@ class SimulationHandler:
 
     def create_car(self) -> None:
         """To create a car with io_handler inputs."""
-        name = self.input_car_name()
-        x, y, direction = self.input_car_position_direction(name)
-        commands = self.input_car_commands(name)
+        name = self._input_car_name()
+        x, y, direction = self._input_car_position_direction(name)
+        commands = self._input_car_commands(name)
         try:
             car = Car(name, x, y, direction, commands)
             self.field.add_car(car)
         except ValueError as e:
             self.io_handler.output_handler(str(e))
 
-    def input_car_name(self) -> str:
+    def _input_car_name(self) -> str:
         """Input name for car."""
         is_valid_car_name = False
         car_name = None
@@ -78,7 +78,7 @@ class SimulationHandler:
                 is_valid_car_name = True
         return car_name
 
-    def input_car_position_direction(self, car_name: str) -> tuple:
+    def _input_car_position_direction(self, car_name: str) -> tuple:
         """Input position(x,y) and direction for car."""
         is_valid_car_position_direction = False
         x, y, direction = None, None, None
@@ -92,7 +92,7 @@ class SimulationHandler:
                 is_valid_car_position_direction = True
         return x, y, direction
 
-    def input_car_commands(self, car_name: str) -> str:
+    def _input_car_commands(self, car_name: str) -> str:
         """Input commands for car."""
         is_valid_car_commands = False
         commands = None
@@ -106,7 +106,7 @@ class SimulationHandler:
                 is_valid_car_commands = True
         return commands
 
-    def input_selection(self, menu_str) -> str:
+    def _input_selection(self, menu_str) -> str:
         """Input selection from the menu."""
         is_valid_selection = False
         selection = None
@@ -120,18 +120,18 @@ class SimulationHandler:
                 is_valid_selection = True
         return selection
 
-    def display_list_cars(self) -> None:
+    def _display_list_cars(self) -> None:
         """Display current list of cars."""
         if len(self.field.cars) > 0:
             self.io_handler.output_handler(f"{msg.MSG_LIST_CARS}\n{str(self.field)}")
 
-    def display_simulation_result(self) -> None:
+    def _display_simulation_result(self) -> None:
         """Display the result after run simulation."""
         self.io_handler.output_handler(f"{msg.MSG_RESULT}\n{self.field.result}")
 
     def start_over(self) -> None:
         """Display menu to select start over or exit."""
-        selection = self.input_selection(msg.MSG_MENU_START_OVER)
+        selection = self._input_selection(msg.MSG_MENU_START_OVER)
         if selection == "1":
             self.run()
         else:

@@ -16,7 +16,7 @@ def test_create_car_with_invalid_name_input(monkeypatch, capfd):
     monkeypatch.setattr("builtins.input", lambda: next(inputs))
     expected_output = "Invalid name of the car."
     handler = SimulationHandler()
-    handler.input_car_name()
+    handler._input_car_name()
     output, err = capfd.readouterr()
     assert expected_output in output
 
@@ -26,7 +26,7 @@ def test_create_car_with_invalid_position_direction(monkeypatch, capfd):
     monkeypatch.setattr("builtins.input", lambda: next(inputs))
     expected_output = "Invalid position or direction of the car."
     handler = SimulationHandler()
-    handler.input_car_position_direction("A")
+    handler._input_car_position_direction("A")
     output, err = capfd.readouterr()
     assert expected_output in output
 
@@ -36,7 +36,7 @@ def test_create_car_with_invalid_commands(monkeypatch, capfd):
     monkeypatch.setattr("builtins.input", lambda: next(inputs))
     expected_output = "Invalid commands of the car."
     handler = SimulationHandler()
-    handler.input_car_commands("A")
+    handler._input_car_commands("A")
     output, err = capfd.readouterr()
     assert expected_output in output
 
@@ -46,7 +46,7 @@ def test_invalid_selection(monkeypatch, capfd):
     monkeypatch.setattr("builtins.input", lambda: next(inputs))
     expected_output = "Invalid selection. Please try again."
     handler = SimulationHandler()
-    handler.input_selection("Please select an option:")
+    handler._input_selection("Please select an option:")
     output, err = capfd.readouterr()
     assert expected_output in output
 

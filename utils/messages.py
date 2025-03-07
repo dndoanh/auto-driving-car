@@ -14,3 +14,5 @@ MSG_MENU_START_OVER = "Please choose from the following options:\n[1] Start over
 MSG_GOODBYE = "Thank you for running the simulation. Goodbye!"
 MSG_LIST_CARS = "Your current list of cars are:"
 MSG_RESULT = "After simulation, the result is:"
+MSG_CAR_OUTSIDE_FIELD = "Invalid car's position. The car's position must be with the field boundary."
+MSG_CAR_DUPLICATE = "Invalid car's name or position. The car's name or position must be unique."
